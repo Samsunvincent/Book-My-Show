@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body onload="admin_getSelectBox(event )">
+        <form onsubmit="updatePage()">
+            <div>
+                <div>
+                    <input type="text" name="name" id="name" placeholder="name">
+                </div>
+                <div>
+                    <input type="file" id="image" placeholder="choose file">
+                </div>
+                <div>
+                    <select name="category" id="category">
+                        <option selected = "category">category</option>
+                    </select>
+                </div>
+                <div>
+                    <select name="language" id="language">
+                        <option selected = "language">language</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="number" name="rating" id="rating" placeholder="rating">
+                </div>
+                <div>
+                    <input type="number" name="duration" id="duration" placeholder="duration">
+                </div>
+                <div>
+                    <input type="text" name="release_date" id="release_date" placeholder="release_date">
+                </div>
+                <div>
+                    <input type="text" name="description" id="description" placeholder="description">
+                </div>
+                <div>
+                    <input type="text" name="cast" id="cast" placeholder="cast">
+                </div>
+                <div>
+                    <input type="text" name="crew" id="crew" placeholder="crew">
+                </div>
+                
+                <!-- <div>
+                 <select name="category" id="category">
+                    <option value="">hahahah</option>
+                 </select>
+                </div> -->
+                <div>
+                    <input type="submit">
+                </div>
+            </div>
+        
+        </form>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script src="./script.js"></script>
+    </body>
+</html>

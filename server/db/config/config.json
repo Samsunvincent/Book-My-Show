@@ -1,0 +1,30 @@
+{
+  "development": {
+    "database": {
+      "url": "mongodb://localhost:27017/show_db",
+      "options": {
+        
+      }
+    }
+  },
+  "test": {
+    "database": {
+      "url": "mongodb://localhost:27017/show_db",
+      "options": {
+        
+      }
+    }
+  },
+  "production": {
+    "database": {
+      "protocol": "mongodb",
+      "username": "root",
+      "password": "password",
+      "name": "database_production",
+      "host": "localhost",
+      "port": "",
+      "options": {
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.footer{
+    background-color: rgb(51,51,56);
+}
+.footer-2{
+    background-color: rgb(64,64,67);
+}
+.care{
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 18px;
+    color: grey;
+}
+.movies{
+    font-size: 12px;
+    padding: 10px;
+    color: grey;
+}
+.Folie{
+    font-size: 11px;
+    color: grey;
+
+}
+.logo{
+    width: 120px;
+}
+.menu{
+    width: 40px;
+    height: 30px;
+    /* padding: 10px; */
+}
+.sec{
+    background-color:rgb(188, 187, 187);
+}
+.nav-section{
+    font-size: 14px;
+}
+
+  .item {
+      width: 100;
+  }
+@media only screen and (max-width: 770px){
+  .nav{
+    display: none;
+  }
+}
+.search{
+  width: calc(200% - 50px);
+  border: none;
+  background: white;
+  box-shadow: none;
+  font-size: 14px;
+  color: rgb(153, 153, 153);
+  outline: 0px;
+  max-width: 500px;
+}

@@ -166,7 +166,7 @@ async function moviesPage() {
             rows = rows + `
             <div onclick = "handleclick('${data[i]._id}')">${data[i].category.category}</div>
             <div onclick = "handleclick('${data[i]._id}')">${data[i].name}</div>
-            <div><img src = "${data[i].image}" onclick = "handleclick('${data[i]._id}')"></div>
+            <div><img src = "${data[i].image}" style="width:400px;" onclick = "handleclick('${data[i]._id}')"></div>
             `
         }
         datacontainer.innerHTML = rows

@@ -10,15 +10,152 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="./style.css">
 </head>
 
 
 
-<body onload="moviesPage()" >
+<body onload="moviesPage()">
+
     <nav>
+        <div class="d-flex justify-content-between p-2 container">
+            <div class="d-flex  align-items-center">
+                <div class=""><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQsAAACUCAMAAACzzPxCAAAAn1BMVEX////XCxdbW1vVAABVVVVNTU1SUlJYWFhhYWHv7+/a2dnAwMBpZ2fW09TWAAxxcXH33N1ISEjcRUjzy8w9PT3++vrjdnjXISHoiYx8enri4eGyrq7js7KWlpaMjIyenp6Fg4PdT1Cmpqa2trb88fLaMjfspqjxw8T11NXLy8v66Ojmj5DYKSvpmJreV1nhaGzvt7nkf4DaPT/VWVwzMzPefx6gAAAM00lEQVR4nO1caXuyOhNGwq6iqGkrviqKWnGr2vP/f9s7k43g0qN9+lw9tbm/VAKGyZ3JbIm1LAMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA4PHBF3u6XfL8B/Bct0hr98txH8Cy0OHxORoFMNaPc1JXKvVyOK7Jfl2hDvGBJIhWujh6Vsl+j7sN4KKGnnD69WBkM3+u6X6HhxITeJ5abXXMUFWZt8t1ndg9lZyEe8WG7Zg4pq0HbT9X2El/ALTHoYf3u4eY8VFjSjT8b5id9uL4/ZuGejfcEj5aJz+aR/N4bD46P5Co0IDWcCA2tsdIbX23W+c/rHUZ4gC1x39IcdplrjOB31QzVxUuJivVmtkQljU20Ebrjv8WBc/gXpgO60/7DVq+Hbvg2lqTy5zUSO7CeG3SFc8O1vcYjuiBKSO/kzqcwAX/pdw8YFk+ytUgP1UrnbOH11satsb3th0fygXdH2VC912oE7UIEyf3GA7fiwXq90NXMTztvC15EV986oN+rFcdG+gAsiQvjaeC9ux2m+v2Y6fygVd3MSFtlwOSMFq/0aupvg/lQs96LwJce3VWi3ewcOQ4xXF+KlcrO6kAgPS7Rv3teSKU/mpXLzezQW4WvGdmFxWjB/KBb13iVRV5HKV46dywZX9ElSkhbd1tdAvu5c6/XtcNOpFvV5PzxLWsDkYjqbphebxtNCePuEizHONXFwi8fPb+gwvT5ONZOPQ1eKxeL7oqqid7FiX9VGrr0kCXPiNwWWpaZpPx3lUNqd5Xl40p83yohhX+AQubD9hcKoJK603ksRzk6RV6K8Lc3jcheaherrKRdjv9folGU+Yel0pYbUPzzy6ghe8yNGjG7EsdbVFJuye63jaK4EL23dR6J43qupH0efi9aXUYZb0hkrUXtKry4tpkgT6kOuBbwv4bqARSKc9h7d7zqBsDkc98QW30bzEBR0ltp6pQQQVH6+G1fu5pKqtNOEdn+6Iy+elFY5d+cogKrmQcP1c63DgekJqT0hdBL7vydtj1y4T3D4MsK59F/XC9h3Hwdc5TtntNMEGz4N231cchSOXNSNNniSjwsU4wTtKL3CIpHM9xXgFrgiWcmZzMXpyoJxCvl4sOkAZHDZG2THjwkewOSylHiQoL5faHXDpWo6dSOkaTpmWpy3fD/S6C+OiBWjgy5xAznXBemuMMsfVm6cOvqo/zJANL0vPuBgAFb7G9lpxsWpzUPmZygfIbqUXORZWqSXkYEWouUl/nDnwSndachEgEg8FkuKlSIUbjDIfF5HT5NPn2R6nxaI9VKRIDt2vug3mR6IUEKFyy7oOzRwY0iANw5Q1j6mgEpqDehiGzQaSUT/log4z5cs3I7C6x7ig684EsVtC6xY/vS0YLaAP8dJScUjcWQoKGRddpqBJDq8sWh5MquTCaRUodT1zUV3E2zIPZQWpoyE2Z3z+PNvnn6wmKnsiZmoMOtLXqNB9KtP/hE91AcPzx7y5D30J3cyBAId3FcIUiKVXclHgHHrjsvvVc01y8QQ+FIModJIv6FBJjGRQMJrcYPB9A/JGBYXsygqBfpf3WNhuT+mF0+eShjhqMRMhzg+XiTUnoZx/If8U9UlMLAV9cTRRq/FFCiMRpA2AioYwEhFODHsZHbollbAa/EZa4SJiyjLSumeVTskFN4aMi5jHEW2uD+QJXrXiQVn8IilkdtRKYe33hIDRUEypxgW3B1M5VX5DWIBIDSZqwQRxsgK0c34Qyu85lTKtzkU49OQUjIGzTDwSNmSvuPQSuQDCHlivChdpCxWzonasdHGNC64PSyJCbZbPxptXqywWwwMpaKV3GgzqXFDwDWI1MK2Xg1GyhuAvfEYWTZiL4V4Oddip9KpzQUGFxKwCK46cX9RSjQtpF4ELYYYEF2yNeS09GFl1PtKLGvmfxcsbLDl/hdACzAXSIuN2QpGL82KqzoU18KSyAhdepk8sjyuGjhhMwbngQxhAvNa6ygXe/jQXKeXetCI23zu8gQtMO9o7WRGfdcT9CWWz6o1OFONGLjzORW4LdZny2INRxLia/h0uIvSmpfPl4H7y37mIaxa3orUYl82r2H7FIihFP3K6AXAfFxEaT7QMfR6z+T58ToHjkyTqq7jwhhj3+HoYB0vk/UYuagS30NBKxPhhLc1Fm40E44qsYuXu44KiUwTTEYKFCLIWt8UFGo5qLvNVXNgsBHSrRL/O41u5wKJN9xiTjlWm+aSz4mNFRx0MNNW4jwtr5DBHD8P3W3nGR1NPbKdhVfBlXPAkIKswvZVj+ncuGAdPhJ1VkduvRGyzTl3GdVaaoju5yNErhtbUx2+N2SBDzEyq5uKLuaiuwNnTzVzUYhw2hGByrbDbsvRb58mIrdbJnVyk6DIiVA8YVI5RO4ugk5NN4K/jwrfhj2Nrfav5vYELwm2msqHya+JdDZZt/SPffScXFssXcBxgNjCkdkMWQJ6UPr6MC6cR1TEa1qyn3Du8iQv0pavOwRK+FZtetGLnyMeQ8Z/ic1xAnuIOMBaHpB8diFcvcEf2L3HhgwLjW/wylJu93MFFzE74vbOY67n0qJqgLUyR3c9xkSfweRywvALzED+bnpuLL+OCNeeYMatiQrtzDxcbbN/Pyr0ltX8mkLIktP4pLlLIF1otm+cVYELtADxrUo2FvjDWwj70lFbbDLiFi1q8tvgG6kp61LdVVVRUOzHoe7mwwNyg02fVhIKFAHBxGtl/KRcY7Yo0CMa1vYsLnqsDljVxc30iKitEBJ/joi+ib5QXXQjz/6cZ35XcbOx8igt81GlxIWeT+/SC1XCssqZzfuYxV/n2dS6cSm6mLELOszJuzPqMC3d6WkGv5OyZKpvgFMgkDiskSVkuk1yDJfaDMmcviz0el6DcO7yJi5o41jcTtT51DoMWctBgjvyAfsAFD6Z4awqqkCjblfYYFS1JGWarZ0fMdC4wpe3xJ/KgrItiMchNJUW2LejsK4XUuLAwxuA14cWdXPCar7WSeZnYMQuDnvTTQ7RG1gdcFI6tSpuFp0d+ISv3C24KlqDZZ3tNggtKaVjHRNPnY0rBzoKyYw0Om+XaYvUPlkDz9JGrmc5FkcgC7eReLnZMEZZyM0B41Dq4AA93fmgO8ntnNT6dCwvFYxkpxbKWFvihI1V1EEaMl52aTsZFMB0A+onuEYdIcTBtNsesWcwMriLba+XNos/K45xanQsLLUYD2mflRthtXPCKlqz6xkdhPrBc6zuDZnOIvsBVewIXucAJcuxpUUwdz9aWiDAYrlBpLPrJcnaVC3gDwqnY1rTh8a0pt9LMirtOkrBSvNxDqnAR9bi+7O/lQsRWR2EudqI/Vi3zExAQlVwsgGtcUCU1zrxe8I8SVRdni8329B2mkoty46yvpYKB2pvSm3NP5mG+N5Yl2cqZRgiJfDu13m/lYlnhQlrc8tRW2peCOIksW1/jAkQppW7psRSra8vho9lvnJlOK7I9RyDxKhuqUQsnH5VmpDcXQeKAsjquN1WqALPxj5qDKPEdP5UbX1z7kQt5gg1dpfQVmJSrNTJnVV/JTBl0RlmCy8NJ7HL7rmd7fS0qcrPqwzBRblaxjahear5oz/f6Z+YCJrrV4MimUTX4SPO+l7jBqDhpHrSguTHW9t9zt6dtD+WuVy9nm415XUahMcRUbVHPjDdLayYViMeZkrFnfRz1vud5/YE2uGmv1PG033PLgYVF5sMSzuqnJdKgN1QS13tOtQInvyxw4QAhDdNL7eFZcxpW71d+JYE4Tp6Vnhx3c3XEdfNefmarQhFzLqP+RpBMu6i+Hu6dn0TAPrS28IJW/DXM4woXsUYN0ZeP+szjTOVgH+hHesvn2mUAKZvNc0zisxsTXCJSncgD/UZvfT5YNuB48rR4fd2v346nD/A4cy43Rr57AF+I7aR6BEuMt7OWZbvu0/PJfXbUYCMefKTfos3ai5czOsi7Xp1ZzLW7MdlhQW8rq76rax3/TND2fl2hgx8+KrEvXQghT3iPCv/6iD/ppavl4ijpUAUKBaUFh+6SlXn3m0uVzocBhdXS4XScnWcWJ8XJk1gRsgBeI6esPRBWYBvI5Pw484IfaRQkrdRJg+ODmYsT0MVZ+RIUgx9Vwd9IUNpVtpT/aOK3geeu5GXZXUxKK/tIQeftEIcL2Onw0r/OH9hcXMf2UnSqbOnvwmUuHtOj/hu2F6gQdc9fhzdynsOdhqe/BfT1iZzScb53+HuwPGwgl1d8lP8W41eCdl92c1neiW/5Dfdj43X9dow/8+8fHhKz7uIAwWd8y/85+AWYLfeH3a8MOi9i1n68Mo6BgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBwW/H/wF/pR8PijLwfwAAAABJRU5ErkJggg==" class="logo" alt=""></div>
+                <!-- <div class="p-3"><input class="px-5 p-1 w-200" type="search" placeholder="for Movies,Events,Plays,Sports and Activities" aria-label="Search"></div> -->
+                <div class="p-3 px-5"><input class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search"></div>
+            </div>
+
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="dropdown p-2">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Mumbai
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                <div class="link-light p-2"><button type="button" class="btn btn-danger ">Sign in</button></div>
+                <div class="p-2"><img src="https://img.icons8.com/?size=100&id=59832&format=png&color=1A1A1A"
+                        class="menu" alt=""></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-between px-3">
+            <div class="d-flex p-2 nav-section">
+                <div class="p-2">Movies</div>
+                <div class="p-2">Streams</div>
+                <div class="p-2">Events</div>
+                <div class="p-2">Plays</div>
+                <div class="p-2">Sports</div>
+                <div class="p-2">Activities</div>
+            </div>
+
+            <div class="d-flex p-2 nav-section">
+                <div class="p-2">ListYourShow</div>
+                <div class="p-2">Coperates</div>
+                <div class="p-2">Offers</div>
+                <div class="p-2">Gift Cards</div>
+                <!-- <div class="p-2">Activities</div> -->
+            </div>
+        </div>
+    </div>
+
         <a href="admin.html">admin</a>
     </nav>
     <div id="datacontainer"></div>
+
+    <footer>
+        <div class="container-fluid bg-dark footer">
+            <div class="d-flex pt-4 justify-content-between">
+                <div class="link-light p-4"><img src="https://in.bmscdn.com/webin/common/icons/hut.svg" alt="" class="p-2 pt-2"><b>List Your Show</b>Got a show,event,activity or a greate experience?partner with us & get listed on BookMyShow</div>
+                <div class="link-light p-4"><button type="button" class="btn btn-danger">Contact today!</button></div>
+            </div>
+        </div>
+    
+        <div class="container-fluid  footer-2">
+            <div class="d-flex link-secondary justify-content-between container p-3">
+                <div class="text-center"><img src="https://img.icons8.com/?size=100&id=VPoF80TMJLgZ&format=png&color=000000" class="w-50" alt="">
+                    <div class="care">24/7 CUSTOMER CARE</div>
+                </div>
+                
+                <div class="text-center"><img src="https://img.icons8.com/?size=100&id=48814&format=png&color=000000" class="w-25" alt="">
+                    <div class="care">RESEND BOOKING CONFIRMATION</div>
+                </div>
+    
+                <div class="text-center"><img src="https://img.icons8.com/?size=100&id=124385&format=png&color=000000" class="w-25" alt="">
+                    <div class="care">SUBSCRIBE TO THE NEWSLETTERS</div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid  bg-dark footer">
+            <div class="row">
+                <div class="col">
+                    <div class="row-12">
+                        <div class="col-12">
+                            <div class=" movies pt-4 fw-bold">MOVIES NOW SHOWING IN MUMBAI</div>
+                            <div class="Folie p-2">Joker: Folie a Deux|Devara - Part 1|Navra Maza Navsacha 2|Dharmaveer: Mukkam Post Thane 2|Tumbbad|Stree 2: Sarkate Ka Aatank|The Buckingham Murders|Transformers One|Yudhra|Binny And Family
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-12">
+                        <div class="col-12">
+                            <div class=" movies pt-4 fw-bold">MOVIES NOW SHOWING IN MUMBAI</div>
+                            <div class="Folie p-2">Joker: Folie a Deux|Devara - Part 1|Navra Maza Navsacha 2|Dharmaveer: Mukkam Post Thane 2|Tumbbad|Stree 2: Sarkate Ka Aatank|The Buckingham Murders|Transformers One|Yudhra|Binny And Family
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-12">
+                        <div class="col-12">
+                            <div class=" movies pt-4 fw-bold">MOVIES NOW SHOWING IN MUMBAI</div>
+                            <div class="Folie p-2">Joker: Folie a Deux|Devara - Part 1|Navra Maza Navsacha 2|Dharmaveer: Mukkam Post Thane 2|Tumbbad|Stree 2: Sarkate Ka Aatank|The Buckingham Murders|Transformers One|Yudhra|Binny And Family
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-12">
+                        <div class="col-12">
+                            <div class=" movies pt-4 fw-bold">MOVIES NOW SHOWING IN MUMBAI</div>
+                            <div class="Folie p-2">Joker: Folie a Deux|Devara - Part 1|Navra Maza Navsacha 2|Dharmaveer: Mukkam Post Thane 2|Tumbbad|Stree 2: Sarkate Ka Aatank|The Buckingham Murders|Transformers One|Yudhra|Binny And Family
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-12">
+                        <div class="col-12">
+                            <div class=" movies pt-4 fw-bold">MOVIES NOW SHOWING IN MUMBAI</div>
+                            <div class="Folie p-2">Joker: Folie a Deux|Devara - Part 1|Navra Maza Navsacha 2|Dharmaveer: Mukkam Post Thane 2|Tumbbad|Stree 2: Sarkate Ka Aatank|The Buckingham Murders|Transformers One|Yudhra|Binny And Family
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="text-center pt-4">
+                <!-- <div class="line"></div> -->
+                <div class="text-center"><img src="https://in.bmscdn.com/webin/common/icons/logo.svg" class=""   alt=""></div>
+                <!-- <div class="line"></div> -->
+            </div>
+    
+            <div class=" d-flex text-center justify-content-center pt-4">
+                <div class=""><img src="https://img.icons8.com/?size=100&id=118466&format=png&color=1A1A1A" class="w-25"  alt=""></div>
+                <div class=""><img src="https://img.icons8.com/?size=100&id=01GWmP9aUoPj&format=png&color=1A1A1A" class="w-25" alt=""></div>
+                <div class=""><img src="https://img.icons8.com/?size=100&id=59813&format=png&color=1A1A1A" class="w-25" alt=""></div>
+                <div class=""><img src="https://img.icons8.com/?size=100&id=62852&format=png&color=1A1A1A" class="w-25" alt=""></div>
+                <div class=""><img src="https://img.icons8.com/?size=100&id=61013&format=png&color=1A1A1A" class="w-25" alt=""></div>
+                <div class=""><img src="https://img.icons8.com/?size=100&id=98960&format=png&color=1A1A1A" class="w-25"  alt=""></div>
+            </div>
+        </div>
+    
+    
+
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

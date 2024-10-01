@@ -67,7 +67,40 @@ exports.get_datas = async function (req, res) {
     
 
     try {
-        let showResponse = await show.find().populate('category').populate('language')
+        // let c_category= await category.findOne(category._id);
+        // console.log("c_category :",c_category)
+
+        let c_category = await category.findOne({category :req.query.category});
+        console.log("c_category :", c_category);
+
+        let l_language = await language.findOne({language : req.query.language});
+
+        let categoryQuery= c_category;
+        let languageQuery = l_language;
+
+        console.log("category Query :",categoryQuery);
+        console.log("language Query :",languageQuery);
+
+
+
+
+        let fillterarr = [];
+
+        if(categoryQuery){
+            fillterarr.push({category : categoryQuery})
+        }
+
+        if(languageQuery){
+            fillterarr.push({language : languageQuery})
+        }
+
+
+        let showResponse = await show.find(fillterarr.length > 0 ? {$and : fillterarr}:{}).populate('category').populate('language');
+        console.log("showResponse :",showResponse);
+
+
+      
+
 
         let response = success_function({
             success: true,
@@ -196,127 +229,127 @@ exports.delete_data = async function (req, res) {
 
 }
 
-exports.filter_data = async function (req, res) {
+// exports.filter_data = async function (req, res) {
 
-    let query = req.query;
-    console.log("query", query)
-
-
-
-
-
-    if (query.language && query.category) {
-        // Handle both language and category filters
-        try {
-            let category_field = await category.findOne({ category: query.category });
-            console.log("category_field from both", category_field);
-
-            let language_field = await language.findOne({ language: query.language });
-            console.log("language_field from both", language_field);
-
-            let category_id = category_field._id;
-            let language_id = language_field._id;
-
-            let ids_match = await show.find({
-                category: category_id,
-                language: language_id
-            }).populate('language').populate('category');
-
-            console.log('ids_match', ids_match);
-
-            let response = success_function({
-                success: true,
-                statusCode: 200,
-                message: "successfully filtered by both language and category",
-                data: ids_match
-            });
-
-            res.status(response.statusCode).send(response);
-            return;
-
-        } catch (error) {
-            console.log("error while filtering", error);
-
-            let response = error_function({
-                success: false,
-                statusCode: 400,
-                message: "failed"
-            });
-
-            res.status(response.statusCode).send(response);
-            return;
-        }
-
-    } else if (query.category) {
-        // Handle category filter
-        try {
-            let category_field = await category.findOne({ category: query.category });
-            console.log("category_field", category_field);
-
-            let id = category_field._id;
-
-            let idmatch = await show.find({ category: id }).populate('category');
-            console.log('idmatch', idmatch);
-
-            let response = success_function({
-                success: true,
-                statusCode: 200,
-                message: "successful category",
-                data: idmatch
-            });
-
-            res.status(response.statusCode).send(response);
-            return;
-
-        } catch (error) {
-            let response = error_function({
-                success: false,
-                statusCode: 400,
-                message: "failed"
-            });
-            res.status(response.statusCode).send(response);
-            return;
-        }
-
-    } else if (query.language) {
-        // Handle language filter
-        try {
-            let language_field = await language.findOne({ language: query.language });
-            console.log("language field._id", language_field._id);
-
-            let id = language_field._id;
-
-            let language_idmatch = await show.find({ language: id }).populate('language');
-            console.log("language id match", language_idmatch);
-
-            let response = success_function({
-                success: true,
-                statusCode: 200,
-                message: "successful language",
-                data: language_idmatch
-            });
-
-            res.status(response.statusCode).send(response);
-            return;
-
-        } catch (error) {
-            console.log("error", error);
-
-            let response = error_function({
-                success: false,
-                statusCode: 400,
-                message: "failed"
-            });
-
-            res.status(response.statusCode).send(response);
-            return;
-        }
-    }
+//     let query = req.query;
+//     console.log("query", query)
 
 
 
 
-}
+
+    // if (query.language && query.category) {
+    //     // Handle both language and category filters
+    //     try {
+    //         let category_field = await category.findOne({ category: query.category });
+    //         console.log("category_field from both", category_field);
+
+    //         let language_field = await language.findOne({ language: query.language });
+    //         console.log("language_field from both", language_field);
+
+    //         let category_id = category_field._id;
+    //         let language_id = language_field._id;
+
+    //         let ids_match = await show.find({
+    //             category: category_id,
+    //             language: language_id
+    //         }).populate('language').populate('category');
+
+    //         console.log('ids_match', ids_match);
+
+    //         let response = success_function({
+    //             success: true,
+    //             statusCode: 200,
+    //             message: "successfully filtered by both language and category",
+    //             data: ids_match
+    //         });
+
+    //         res.status(response.statusCode).send(response);
+    //         return;
+
+    //     } catch (error) {
+    //         console.log("error while filtering", error);
+
+    //         let response = error_function({
+    //             success: false,
+    //             statusCode: 400,
+    //             message: "failed"
+    //         });
+
+    //         res.status(response.statusCode).send(response);
+    //         return;
+    //     }
+
+    // } else if (query.category) {
+    //     // Handle category filter
+    //     try {
+    //         let category_field = await category.findOne({ category: query.category });
+    //         console.log("category_field", category_field);
+
+    //         let id = category_field._id;
+
+    //         let idmatch = await show.find({ category: id }).populate('category');
+    //         console.log('idmatch', idmatch);
+
+    //         let response = success_function({
+    //             success: true,
+    //             statusCode: 200,
+    //             message: "successful category",
+    //             data: idmatch
+    //         });
+
+    //         res.status(response.statusCode).send(response);
+    //         return;
+
+    //     } catch (error) {
+    //         let response = error_function({
+    //             success: false,
+    //             statusCode: 400,
+    //             message: "failed"
+    //         });
+    //         res.status(response.statusCode).send(response);
+    //         return;
+    //     }
+
+    // } else if (query.language) {
+    //     // Handle language filter
+    //     try {
+    //         let language_field = await language.findOne({ language: query.language });
+    //         console.log("language field._id", language_field._id);
+
+    //         let id = language_field._id;
+
+    //         let language_idmatch = await show.find({ language: id }).populate('language');
+    //         console.log("language id match", language_idmatch);
+
+    //         let response = success_function({
+    //             success: true,
+    //             statusCode: 200,
+    //             message: "successful language",
+    //             data: language_idmatch
+    //         });
+
+    //         res.status(response.statusCode).send(response);
+    //         return;
+
+    //     } catch (error) {
+    //         console.log("error", error);
+
+    //         let response = error_function({
+    //             success: false,
+    //             statusCode: 400,
+    //             message: "failed"
+    //         });
+
+    //         res.status(response.statusCode).send(response);
+    //         return;
+    //     }
+    // }
+
+
+
+
+// }
 
 
 exports.selectcategory = async function (req, res) {

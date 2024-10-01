@@ -2,6 +2,7 @@
 //Add Movie
 
 
+
 async function getSelectBox(event) {
     event.preventDefault()
     //fetch category
@@ -374,6 +375,78 @@ async function deleteClick(id){
         
         console.log("error",error)
     }
+}
+
+async function filterMovies(){
+    try {
+        let c_response = await fetch('/category', { method: 'GET' })
+        console.log("c_response", c_response)
+
+        let parsed_c_response = await c_response.json();
+        console.log(parsed_c_response)
+
+        let c_data = parsed_c_response.data;
+        console.log("c_data", c_data)
+
+        let c_rows = '<option selected = "category">category</option>'
+
+        let category = document.getElementById('category');
+
+        for (let i = 0; i < c_data.length; i++) {
+            c_rows = c_rows + `
+            <option value ="${c_data[i].category}">${c_data[i].category}</option>
+            `
+        }
+        category.innerHTML = c_rows;
+
+
+        //fetch language
+
+        let l_response = await fetch('/language', { method: 'GET' });
+        console.log("l_response", l_response);
+
+        let parsed_l_response = await l_response.json();
+        console.log("parsed_l_response", parsed_l_response);
+
+        let l_data = parsed_l_response.data;
+        console.log("l_data", l_data);
+
+        let l_rows = '<option selected = "language">language</option>'
+
+        let language = document.getElementById('language');
+
+        for (let i = 0; i < l_data.length; i++) {
+            l_rows = l_rows + `
+            <option value="${l_data[i].language}">${l_data[i].language}</option>
+            `
+        }
+        language.innerHTML = l_rows
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+async function getFilter(event){
+    event.preventDefault()
+    let category = document.getElementById('category').value
+    console.log('category',category)
+
+    if(category === 'category'){
+        category = ''
+    }
+
+    let language = document.getElementById('language').value
+    console.log('langauage',language)
+
+    if(language === 'language')
+    {
+        language = ''
+    }
+    try {
+        let response  = await fetch(`/getdatas?category=${category}&language=${language}`)
+    } catch (error) {
+        
+    }
+
 }
 
 

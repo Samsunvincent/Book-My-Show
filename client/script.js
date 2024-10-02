@@ -164,10 +164,17 @@ async function moviesPage() {
         let rows = '';
 
         for (i = 0; i < data.length; i++) {
-            rows = rows + `
-            <div onclick = "handleclick('${data[i]._id}')">${data[i].category.category}</div>
-            <div onclick = "handleclick('${data[i]._id}')">${data[i].name}</div>
-            <div><img src = "${data[i].image}" style="width:400px;" onclick = "handleclick('${data[i]._id}')"></div>
+            rows = rows +`
+
+                <div>
+                    <div class="d-flex">
+                        <div>
+                            <img src="${data[i].image}" style="width:224px;""height:378.08px;" onclick = "handleclick('${data[i]._id}')">
+                            <div onclick="handleclick('${data[i]._id}')">${data[i].name}</div>
+                            <div onclick="handleclick('${data[i]._id}')">${data[i].category.category}</div>
+                        </div>
+                    </div>
+                </div>
             `
         }
         datacontainer.innerHTML = rows
@@ -177,30 +184,30 @@ async function moviesPage() {
 }
 
 function handleclick(id) {
-    window.location = `view.html?id=${id}`
+    window.location = `view.html ? id = ${ id } `
 }
 
 async function moviePage() {
     let params = new URLSearchParams(window.location.search);
-    console.log("params",params)
+    console.log("params", params)
 
     let id = params.get('id');
-    console.log("id : ",id);
+    console.log("id : ", id);
 
     try {
-        let response = await fetch(`/getdata/${id}`)
-        console.log("response",response)
+        let response = await fetch(`/ getdata / ${ id } `)
+        console.log("response", response)
 
         let parsed_response = await response.json();
-        console.log('parsed_response',parsed_response);
+        console.log('parsed_response', parsed_response);
 
         let datas = parsed_response.data;
-        console.log("data",datas);
+        console.log("data", datas);
 
         let movieContainer = document.getElementById('movieContainer')
 
         let rows = `
-        <div>${datas.name}</div>
+                < div > ${ datas.name }</div >
         <div>${datas.cast}</div>
         <div>${datas.category.category}</div>
         <div>${datas.crew}</div>
@@ -211,17 +218,17 @@ async function moviePage() {
         <div>${datas.release_date}</div>
 
 
-        `
+            `
 
         movieContainer.innerHTML = rows;
-    } 
+    }
     catch (error) {
-        console.log("error",error);
+        console.log("error", error);
     }
 }
 
 
-   async function adminView(){
+async function adminView() {
     try {
         let response = await fetch('/getdatas', { method: 'GET' })
         console.log("response", response);
@@ -238,13 +245,13 @@ async function moviePage() {
 
         for (i = 0; i < data.length; i++) {
             rows = rows + `
-            <div onclick = "handleclick('${data[i]._id}')">${data[i].category.category}</div>
+            <div onclick = "handleclick('${data[i]._id}')" > ${ data[i].category.category }</div>
             <div onclick = "handleclick('${data[i]._id}')">${data[i].name}</div>
             <div><img src = "${data[i].image}" onclick = "handleclick('${data[i]._id}')"></div>
             <div><button onclick = "updateclick('${data[i]._id}')">update</button></div>
             <div><button onclick = "deleteClick('${data[i]._id}')">Delete</button></div>
 
-            
+
             `
         }
         adminContainer.innerHTML = rows
@@ -254,11 +261,11 @@ async function moviePage() {
 }
 
 
-function updateclick(id){
-    window.location = `update.html?id=${id}`;
+function updateclick(id) {
+    window.location = `update.html ? id = ${ id } `;
 }
 
-async function admin_getSelectBox(){
+async function admin_getSelectBox() {
     try {
         let c_response = await fetch('/category', { method: 'GET' })
         console.log("c_response", c_response)
@@ -275,8 +282,8 @@ async function admin_getSelectBox(){
 
         for (let i = 0; i < c_data.length; i++) {
             c_rows = c_rows + `
-            <option value ="${c_data[i].category}">${c_data[i].category}</option>
-            `
+                < option value = "${c_data[i].category}" > ${ c_data[i].category }</option >
+                    `
         }
         category.innerHTML = c_rows;
 
@@ -298,14 +305,14 @@ async function admin_getSelectBox(){
 
         for (let i = 0; i < l_data.length; i++) {
             l_rows = l_rows + `
-            <option value="${l_data[i].language}">${l_data[i].language}</option>
-            `
+                    < option value = "${l_data[i].language}" > ${ l_data[i].language }</option >
+                        `
         }
         language.innerHTML = l_rows
     } catch (error) {
         console.log("error", error)
     }
-    
+
 
     let name = document.getElementById('name')
     let image = document.getElementById('image');
@@ -321,17 +328,17 @@ async function admin_getSelectBox(){
     let params = new URLSearchParams(window.location.search);
 
     let id = params.get('id');
-    console.log('id',id);
+    console.log('id', id);
 
     try {
-        let response = await fetch(`/getdata/${id}`)
-        console.log("response",response)
+        let response = await fetch(`/ getdata / ${ id } `)
+        console.log("response", response)
 
         let parsed_response = await response.json();
-        console.log('parsed_response',parsed_response);
+        console.log('parsed_response', parsed_response);
 
         let datas = parsed_response.data;
-        console.log("data",datas);
+        console.log("data", datas);
 
         name.value = datas.name;
         rating.value = datas.rating;
@@ -342,42 +349,42 @@ async function admin_getSelectBox(){
         description.value = datas.description;
         cast.value = datas.cast;
         crew.value = datas.crew;
-        
 
-       
-    } 
-    catch (error) {
-        console.log("error",error);
+
+
     }
-    
+    catch (error) {
+        console.log("error", error);
+    }
+
 
 }
 
 
-async function deleteClick(id){
-    console.log("reached........................,",id)
+async function deleteClick(id) {
+    console.log("reached........................,", id)
     try {
-        let response = await fetch(`/delete_data/${id}`,{
-            method : "DELETE"
-    });
-        
-        let parsed_response= await response.json()
+        let response = await fetch(`/ delete_data / ${ id } `, {
+            method: "DELETE"
+        });
+
+        let parsed_response = await response.json()
         console.log(parsed_response)
 
-    if(response.status===200){
-        alert("deletion successfull")
-        window.location='admin.html'
-    }else{
-        alert("deletion failed")
-    }
+        if (response.status === 200) {
+            alert("deletion successfull")
+            window.location = 'admin.html'
+        } else {
+            alert("deletion failed")
+        }
 
     } catch (error) {
-        
-        console.log("error",error)
+
+        console.log("error", error)
     }
 }
 
-async function filterMovies(){
+async function filterMovies() {
     try {
         let c_response = await fetch('/category', { method: 'GET' })
         console.log("c_response", c_response)
@@ -394,8 +401,8 @@ async function filterMovies(){
 
         for (let i = 0; i < c_data.length; i++) {
             c_rows = c_rows + `
-            <option value ="${c_data[i].category}">${c_data[i].category}</option>
-            `
+                < option value = "${c_data[i].category}" > ${ c_data[i].category }</option >
+                    `
         }
         category.innerHTML = c_rows;
 
@@ -417,34 +424,33 @@ async function filterMovies(){
 
         for (let i = 0; i < l_data.length; i++) {
             l_rows = l_rows + `
-            <option value="${l_data[i].language}">${l_data[i].language}</option>
-            `
+                <option value = "${l_data[i].language}"> ${ l_data[i].language }</option>
+                        `
         }
         language.innerHTML = l_rows
     } catch (error) {
         console.log("error", error)
     }
 }
-async function getFilter(event){
+async function getFilter(event) {
     event.preventDefault()
     let category = document.getElementById('category').value
-    console.log('category',category)
+    console.log('category', category)
 
-    if(category === 'category'){
+    if (category === 'category') {
         category = ''
     }
 
     let language = document.getElementById('language').value
-    console.log('langauage',language)
+    console.log('langauage', language)
 
-    if(language === 'language')
-    {
+    if (language === 'language') {
         language = ''
     }
     try {
-        let response  = await fetch(`/getdatas?category=${category}&language=${language}`)
+        let response = await fetch(`/ getdatas ? category = ${ category }& language=${ language } `)
     } catch (error) {
-        
+
     }
 
 }

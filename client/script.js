@@ -401,8 +401,8 @@ async function filterMovies() {
 
         for (let i = 0; i < c_data.length; i++) {
             c_rows = c_rows + `
-                < option value = "${c_data[i].category}" > ${ c_data[i].category }</option >
-                    `
+                <option value="${c_data[i].category}">${c_data[i].category}</option>
+                `
         }
         category.innerHTML = c_rows;
 
@@ -448,7 +448,7 @@ async function getFilter(event) {
         language = ''
     }
     try {
-        let response = await fetch(`/ getdatas ? category = ${ category }& language=${ language } `)
+        let response = await fetch(`/getdatas?category=${category}&language=${language}`)
     } catch (error) {
 
     }
